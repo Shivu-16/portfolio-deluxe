@@ -8,81 +8,65 @@ import ScrollTrigger from "gsap/dist/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Main() {
-  
   useEffect(() => {
-    let locoScroll = null;
-
-    const initLocoScroll = () => {
-      locoScroll = new LocomotiveScroll({
-        el: document.querySelector(".main"),
-        smooth: true,
-      });
-      ScrollTrigger.scrollerProxy(".main", {
-        scrollTop(value) {
-          return arguments.length
-            ? locoScroll.scrollTo(value, 0, 0)
-            : locoScroll.scroll.instance.scroll.y;
-        },
-        getBoundingClientRect() {
-          return {
-            top: 0,
-            left: 0,
-            width: window.innerWidth,
-            height: window.innerHeight,
-          };
-        },
-        pinType: document.querySelector(".main").style.transform
-          ? "transform"
-          : "fixed",
-      });
-      ScrollTrigger.addEventListener("refresh", () => locoScroll.update());
-      ScrollTrigger.refresh();
+    const locoScroll = new LocomotiveScroll({
+      el: document.querySelector(".main"),
+      smooth: true,
+    });
+    return () => {
+      locoScroll.destroy();
     };
-
-    const destroyLocoScroll = () => {
-      if (locoScroll) {
-        locoScroll.destroy();
-        locoScroll = null;
-      }
-    };
-
-    initLocoScroll();
-    return destroyLocoScroll;
   }, []);
 
   useEffect(() => {
-    gsap.to(".page1 h1", {
-      x: -90,
-      scrollTrigger: {
-        trigger: ".page1 h1",
-        scroller: ".main",
-        start: "top 27%",
-        end: "top 0%",
-        scrub: 3,
-      },
-    },"anim");
 
-    gsap.to(".page1 h2", {
-      x: 90,
-      scrollTrigger: {
-        trigger: ".page1 h2",
-        scroller: ".main",
-        start: "top 27%",
-        end: "top 0%",
-        scrub: 3,
+    gsap.to(
+      ".page1 h1",
+      {
+        x: -90,
+        scrollTrigger: {
+          trigger: ".page1 h1",
+          scroller: ".main",
+          markers: true,
+          start: "top 27%",
+          end: "top 0%",
+          scrub: 3,
+        },
       },
-    },"anim");
+      "anim"
+    );
 
-    gsap.to(".page1 .mainVideo", {
-      width: "90%",
-      scrollTrigger: {
-        trigger: ".page1 .mainVideo",
-        scroller: ".main",
-        start: "top 27%",
-        end: "top 0%",
-        scrub: 3,
+    gsap.to(
+      ".page1 h2",
+      {
+        x: 90,
+        scrollTrigger: {
+          trigger: ".page1 h2",
+          scroller: ".main",
+          markers: true,
+          start: "top 27%",
+          end: "top 0%",
+          scrub: 3,
+        },
       },
-    },"anim");
+      "anim"
+    );
+
+    gsap.to(
+      ".page1 .mainVideo",
+      {
+        width: "90%",
+        scrollTrigger: {
+          trigger: ".page1 .mainVideo",
+          scroller: ".main",
+          markers: true,
+          start: "top 27%",
+          end: "top 0%",
+          scrub: 3,
+        },
+      },
+      "anim"
+    );
   }, []);
   return (
     <>
@@ -112,6 +96,9 @@ export default function Main() {
           </h2>
           {/* <video autoplay muted loop z src='' alt=''></video> */}
           <img className="mainVideo" src={mainimg} alt="loading"></img>
+        </div>
+        <div className="page2">
+          
         </div>
       </div>
     </>
