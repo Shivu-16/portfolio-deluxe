@@ -10,7 +10,7 @@
 
 .main{
   background-image: url('./Components/Resources/Waves.svg');
-  background-color: #0F0D0D;
+  background-color: #111;
   background-repeat: no-repeat;
 }
 
@@ -53,36 +53,36 @@
   border-bottom: 2px solid #fff;
 }
 
-.main h1{
+.main .page1 h1{
   margin-top: 12vh;
-  margin-left: 6vw;
+  margin-left: 10vw;
   font-size: 9vw;
   font-family: 'Vina Sans', cursive;
   font-weight: 500;
 }
 
-.main h2{
+.main .page1 h2{
   margin-left: 20vw;
 }
 
-.main h2 span{
+.main .page1 h2 span{
   font-size: 5vw;
 }
 
-.main h2 span:nth-child(1){
+.main .page1 h2 span:nth-child(1){
   font-family: 'Gloria Hallelujah', cursive;
 }
-.main h2 span:nth-child(2){
+.main .page1 h2 span:nth-child(2){
   font-family: 'Borel', cursive;
 }
-.main h2 span:nth-child(3){
+.main .page1 h2 span:nth-child(3){
   font-family: 'Dancing Script', cursive;
   font-size: 6vw;
 }
 
-html::-webkit-scrollbar {
+/* html::-webkit-scrollbar {
   width: 0em;
-}
+} */
 
 .mainVideo{
   margin-top: 10vw;
@@ -91,3 +91,109 @@ html::-webkit-scrollbar {
   left: 50%;
   transform: translate(-50%,0);
 }
+
+.page2{
+  min-height: 90vh;
+  padding: 10vw 5vw;
+  border-bottom: 3px solid aquamarine;
+}
+
+.page2 h1{
+  font-size: 7vw;
+  font-weight: 500;
+  color: #111;
+}
+
+.page2-container{
+  height: 60vh;
+  width: 100%;
+  /* background-color: blue; */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* padding: 0 5vw; */
+}
+
+.page2-left{
+  /* background-color: aquamarine; */
+  width:35%;
+}
+
+.page2-right{
+  /* background-color: aquamarine; */
+  width:35%;
+}
+
+.page2-left h2{
+  font-size: 2.5vw;
+  font-weight: 300;
+  /* line-height: 4vw; */
+}
+
+.page2-left h2 span{
+  color: #111;
+}
+
+.page2-right p span{
+  color: #111;
+}
+
+.page2-right p{
+  font-size: 1.5vw;
+}
+
+.page2-right button{
+  width: 100%;
+  border-radius: 50px;
+  border: none;
+  padding: 4px 0;
+  color: #111;
+  background-color: #EBDFFF;
+  margin-top: 1vw;
+}
+
+
+/*! locomotive-scroll v3.5.4 | MIT License | https://github.com/locomotivemtl/locomotive-scroll */
+html.has-scroll-smooth {
+  overflow: hidden; }
+
+html.has-scroll-dragging {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; }
+
+.has-scroll-smooth body {
+  overflow: hidden; }
+
+.has-scroll-smooth [data-scroll-container] {
+  min-height: 100vh; }
+
+.c-scrollbar {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 11px;
+  height: 100vh;
+  transform-origin: center right;
+  transition: transform 0.3s, opacity 0.3s;
+  opacity: 0; }
+  .c-scrollbar:hover {
+    transform: scaleX(1.45); }
+  .c-scrollbar:hover, .has-scroll-scrolling .c-scrollbar, .has-scroll-dragging .c-scrollbar {
+    opacity: 1; }
+
+.c-scrollbar_thumb {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: black;
+  opacity: 0.5;
+  width: 7px;
+  border-radius: 10px;
+  margin: 2px;
+  cursor: -webkit-grab;
+  cursor: grab; }
+  .has-scroll-dragging .c-scrollbar_thumb {
+    cursor: -webkit-grabbing;
+    cursor: grabbing; }
