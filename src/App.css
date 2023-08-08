@@ -96,9 +96,9 @@
 }
 
 .page2{
-  min-height: 150vh;
-  padding: 10vw 5vw;
-  border-bottom: 3px solid aquamarine;
+  min-height: 80vh;
+  padding: 0vw 5vw;
+  border-bottom: 3px solid #111;
 }
 
 .page2 h1{
@@ -134,11 +134,11 @@
 }
 
 .page2-left h2 span{
-  /* color: #111; */
+  color: #111;
 }
 
 .page2-right p span{
-  /* color: #111; */
+  color: #111;
 }
 
 .page2-right p{

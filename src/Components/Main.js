@@ -57,9 +57,21 @@ export default function Main() {
           // markers:true,
           start:"top 20%",
           end:"top 0%",
-          scrub:2,
+          scrub:3,
         }
       })
+
+      const tl2 = gsap.timeline({
+        scrollTrigger:{
+          trigger:".page1 h1",
+          scroller:".main",
+          // markers:true,
+          start:"top -125%",
+          end:"top -130%",
+          scrub:3,
+        }
+      })
+
       tl.to("#moveLeft",{
         x:-90,
         duration:1.5,
@@ -77,6 +89,10 @@ export default function Main() {
         duration: 2,
         y: -250,
       },"anim")
+
+      tl2.to(".main",{
+        backgroundColor:"#fff",
+      })
 
 
     });
