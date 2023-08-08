@@ -4,99 +4,83 @@ import navimg from "./Resources/navImg.jpg";
 import mainimg from "./Resources/mainImg.jpg";
 import { gsap } from "gsap/dist/gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-// import Scrollbar from "smooth-scrollbar";
+// import Scrollbar from "mainbar";
 
 export default function Main() {
+
   useLayoutEffect(() => {
     let ctx = gsap.context(() => {
-      // smoothning scroll
-      const locoScroll = new LocomotiveScroll({
-        el: document.querySelector(".main"),
-        smooth: true,
-      });
+      function smoothning() {
+        //smoothning the scroller
+        gsap.registerPlugin(ScrollTrigger);
 
-      gsap.registerPlugin(ScrollTrigger);
+        const locoScroll = new LocomotiveScroll({
+          el: document.querySelector(".main"),
+          smooth: true,
+        });
+        locoScroll.on("scroll", ScrollTrigger.update);
 
-      //syncronizing scrolls
-      locoScroll.on("scroll", ScrollTrigger.update);
+        //connecting scrolltrigger to locomotive scroll
+        ScrollTrigger.scrollerProxy(".main", {
+          scrollTop(value) {
+            return arguments.length
+              ? locoScroll.scrollTo(value, 0, 0)
+              : locoScroll.scroll.instance.scroll.y;
+          },
+          getBoundingClientRect() {
+            return {
+              top: 0,
+              left: 0,
+              width: window.innerWidth,
+              height: window.innerHeight,
+            };
+          },
+          pinType: document.querySelector(".main").style.transform
+            ? "transform"
+            : "fixed",
+        });
 
-      ScrollTrigger.scrollerProxy(".main", {
-        scrollTop(value) {
-          return arguments.length
-            ? locoScroll.scrollTo(value, 0, 0)
-            : locoScroll.scroll.instance.scroll.y;
-        },
-        getBoundingClientRect() {
-          return {
-            top: 0,
-            left: 0,
-            width: window.innerWidth,
-            height: window.innerHeight,
-          };
-        },
-        pinType: document.querySelector(".main").style.transform
-          ? "transform"
-          : "fixed",
-      });
+        ScrollTrigger.addEventListener("refresh", () => locoScroll.update());
+        ScrollTrigger.refresh();
+      }
+      //smoothning done and wrapped in a function 
+      smoothning();
 
-      //initialinzing elements to be moved
       gsap.set("#moveLeft", { x: 0, y: 0, opacity: 1 });
       gsap.set("#moveRight", { x: 0, y: 0, opacity: 1 });
-      gsap.set(".page1 .mainVideo", { x: 0, y: 0, opacity: 1, width:"60%" });
+      gsap.set(".mainVideo", { x: 0 , y: 0, width:"60%" });
 
-      //motion of the elements
-      let tl = gsap
-        .timeline({ defaults: { ease: "none" } })
-        .to("#moveLeft", { x: -90 })
-      
-      let t2 = gsap
-        .timeline({ defaults: { ease: "none" } })
-        .to("#moveRight", { x: 90 });
-      
-      let t3 = gsap
-        .timeline({ defaults: { ease: "none" } })
-        .to(".page1 .mainVideo", { width: "90%" });
+      const tl = gsap.timeline({
+        scrollTrigger:{
+          trigger:".page1 h1",
+          scroller:".main",
+          // markers:true,
+          start:"top 20%",
+          end:"top 0%",
+          scrub:2,
+        }
+      })
+      tl.to("#moveLeft",{
+        x:-90,
+        duration:1.5,
+        opacity:0.5,
+        filter: "blur(4px)",
+      },"anim")
+      tl.to("#moveRight",{
+        x:100,
+        duration:1.5,
+        opacity:0.5,
+        filter: "blur(4px)",
+      },"anim")
+      tl.to(".mainVideo",{
+        width:"85%",
+        duration: 2,
+        y: -250,
+      },"anim")
 
-      //time of movement of elements
-      ScrollTrigger.create({
-        trigger: "#moveLeft",
-        scroller: ".main",
-        // markers: true,
-        start: "top 30%",
-        end: "top 0",
-        scrub: 3,
-        animation: tl,
-      });
 
-      ScrollTrigger.create({
-        trigger: "#moveRight",
-        scroller: ".main",
-        // markers: true,
-        start: "top 30%",
-        end: "top 0",
-        scrub: 3,
-        animation: t2,
-      });
-
-      ScrollTrigger.create({
-        trigger: "#moveRight",
-        scroller: ".page1 .mainVideo",
-        // markers: true,
-        start: "top 30%",
-        end: "top 0",
-        scrub: 3,
-        animation: t3,
-      });
-
-      ScrollTrigger.addEventListener("refresh", () => locoScroll.update());
-      ScrollTrigger.refresh();
     });
-
-    return ()=> ctx.revert;
-
-    // console.log("Move Left Progress:", moveLeftProgress);
-
-    //checking for triggering points
+    return () => ctx.revert;
   }, []);
 
   // useEffect(() => {

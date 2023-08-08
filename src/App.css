@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&family=Vina+Sans&family=Borel&family=Dancing+Script:wght@700&family=Lugrasimo:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&family=Permanent+Marker&family=Pacifico&family=Lobster&family=Vina+Sans&family=Borel&family=Dancing+Script:wght@700&family=Lugrasimo:wght@300;400;700&display=swap');
 *{
   overflow-x: hidden;
   margin: 0;
@@ -30,6 +30,9 @@
 }
 
 .nav-items{
+  padding:0.8vw 2vw;
+  border-radius: 20px;
+  background-color: #111;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -93,7 +96,7 @@
 }
 
 .page2{
-  min-height: 90vh;
+  min-height: 150vh;
   padding: 10vw 5vw;
   border-bottom: 3px solid aquamarine;
 }
@@ -131,11 +134,11 @@
 }
 
 .page2-left h2 span{
-  color: #111;
+  /* color: #111; */
 }
 
 .page2-right p span{
-  color: #111;
+  /* color: #111; */
 }
 
 .page2-right p{
@@ -196,4 +199,21 @@ html.has-scroll-dragging {
   cursor: grab; }
   .has-scroll-dragging .c-scrollbar_thumb {
     cursor: -webkit-grabbing;
-    cursor: grabbing; }
+    cursor: grabbing;
+ }
+
+.page2-left span:nth-child(2){
+  font-family: 'Dancing Script', cursive;
+}
+.page2-left span:nth-child(3){
+  font-family: 'Lobster', cursive;
+}
+.page2-left span:nth-child(5){
+  font-family: 'Vina Sans', cursive;
+}
+.page2-left span:nth-child(4){
+  font-family: 'Pacifico', cursive;
+}
+.page2-left span:nth-child(1){
+  font-family: 'Permanent Marker', cursive;
+}
